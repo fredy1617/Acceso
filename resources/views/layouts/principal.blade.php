@@ -37,7 +37,7 @@
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>CONALEP</span></a>
+              <a href="index.html" class="site_title"><img src="{{asset('logo-conalep.png')}}" width="45" height="42"> <span>CONALEP</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -61,6 +61,7 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
+                  @if(Auth::user()->Rol == 'ADMINISTRADOR')
                   <li><a><i class="fa fa-home"></i> Usuario <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/admin-userslist/create"><i class="fa fa-home"></i>Agregar</a></li>
@@ -73,6 +74,7 @@
                       <li><a href="/admin7alumnoslist"><i class="fa fa-home"></i>Alumnos</a></li>
                     </ul>
                   </li>
+                  @endif
 
                   <li><a href="/list/registros-alumnos"><i class="fa fa-home"></i> Registros </a></li>
                           
