@@ -40,7 +40,7 @@ Route::get('records7alumnoslist/{id}','RecordsController@index');
 Route::resource('log','LogController');
 
 Route::get('/vista/', function(){
-	return view('Users.create');
+	return view('layouts.principal');
 });
 
 Auth::routes();

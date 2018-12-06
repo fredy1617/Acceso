@@ -1,4 +1,7 @@
-
+nav_title
+nav_menu
+li
+background:linear-gradient
 html , body{
 	
  height:100%;
@@ -144,7 +147,7 @@ html , body{
     padding: 0 0 4px 0
 }
 .left_col {
-    background: #2A3F54
+    background: #007e67
 }
 .nav-sm .container.body .col-md-3.left_col {
     min-height: 100%;
@@ -356,7 +359,7 @@ body .container.body .right_col {
 .nav_title {
     width: 230px;
     float: left;
-    background: #2A3F54;
+    background: #007e67;
     border-radius: 0;
     height: 57px
 }
@@ -488,7 +491,7 @@ body .container.body .right_col {
 }
 body {
     color: #73879C;
-    background: #2A3F54;
+    background: #007e67;
     font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
     font-size: 13px;
     font-weight: 400;
@@ -798,7 +801,7 @@ a:focus {
 }
 .nav.side-menu>li.active>a {
     text-shadow: rgba(0, 0, 0, 0.25) 0 -1px 0;
-    background: linear-gradient(#334556, #2C4257), #2A3F54;
+    background: linear-gradient(#0f8a6d, #007a5e), #007e67;
     box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0
 }
 .navbar-brand,
@@ -1668,7 +1671,7 @@ span.right {
     padding: 5px 0 0 0;
     position: fixed;
     width: 230px;
-    background: #2A3F54;
+    background: #007e67;
 	z-index:999;
 }
 .sidebar-footer a {
