@@ -1,8 +1,4 @@
-@extends('layouts.app')
-@extends('layouts.nav')
-
-@section('nav')
-@endsection
+@extends('layouts.principal')
  
 @section('content')
 <div class="container">
@@ -44,7 +40,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="Correo" class="col-md-4 col-form-label text-md-right">{{ __('Correo') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $usuario->email }}" required>
@@ -78,19 +74,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="Foto" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
-
-                            <div class="col-md-6">
-                                {!! Form::file('Foto',array('class' => 'form-control')) !!}
-                            
-                                @if ($errors->has('Foto'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('Foto') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                        
                         <div class="form-group row">
                             <label for="Plantel" class="col-md-4 col-form-label text-md-right">{{ __('Plantel') }}</label>
 

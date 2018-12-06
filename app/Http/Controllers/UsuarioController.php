@@ -91,6 +91,31 @@ class UsuarioController extends Controller
         return view('Users.edit',["usuario"=>$usuario]);
     }
 
+    public function editPerfil()
+    {
+        return view('Users.editPerfil');
+    }
+    public function updatePerfil(Request $request, $id)
+    {
+        $usuario= User::find($id);
+        if($request->hasFile('Foto')) {
+            $file = $request->file('Foto');
+            $name = time().$file->getClientOriginalName();
+            $file->move(public_path().'/perfil/', $name);
+            $usuario->Foto=$name;
+        }
+        $usuario->Nombre=$request->Nombre;
+        $usuario->Apellidos=$request->Apellidos;
+        $usuario->email=$request->email;
+        #se guarda el registro
+        $usuario->save();
+        if ($usuario->save()) {
+            return redirect("/list/registros-alumnos");
+        }else{
+            return view("Users.editPerfil");
+        }
+    }
+
     public function editpass($id)
     {
         $usuario= User::find($id);
@@ -120,15 +145,9 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
         $usuario= User::find($id);
-        if($request->hasFile('Foto')) {
-            $file = $request->file('Foto');
-            $name = time().$file->getClientOriginalName();
-            $file->move(public_path().'/perfil/', $name);
-            $usuario->Foto=$name;
-        }
         $usuario->Nombre=$request->Nombre;
         $usuario->Apellidos=$request->Apellidos;
-        $usuario->Correo=$request->Correo;
+        $usuario->email=$request->email;
         $usuario->Rol=$request->Rol;
         $usuario->Plantel=$request->Plantel;
         #se guarda el registro

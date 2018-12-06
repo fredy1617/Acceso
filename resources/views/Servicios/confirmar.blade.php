@@ -1,10 +1,6 @@
-@extends('layouts.app')
-@extends('layouts.nav')
-
-@section('nav')
-@endsection
-
-@section("content")
+@extends('layouts.principal')
+ 
+@section('content')
 <div id="page-wrapper">
   <div class="row">
       <div class="col-lg-12">

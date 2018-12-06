@@ -1,8 +1,4 @@
-@extends('layouts.app')
-@extends('layouts.nav')
-
-@section('nav')
-@endsection
+@extends('layouts.principal')
  
 @section('content')
         <div class="container">
@@ -38,7 +34,7 @@
                    {!! Form::close() !!}
                    <div class="row">
                    	<div class="col-lg-8">
- 					<a class="btn btn-outline-success" href="{{url('/admin7alumnoslist/create')}}" role="button">Registro(manual)</a>
+ 					
  					</div>
  					<div class="col-lg-4">
  						{!! Form::open(['url'=> 'admin7alumnoslist/', 'method'=>'GET','autocomplete'=>'off','role'=>'search']) !!}
