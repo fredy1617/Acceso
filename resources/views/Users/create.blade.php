@@ -3,138 +3,123 @@
 
 @section('nav')
 @endsection
+ 
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Agregar usuario') }}</div>
 
-@section("content")
-<div id="page-wrapper">
-  <div class="row">
-      <div class="col-lg-12">
-            <h1 class="page-header">Agregar usuario</h1>
-      </div>
-      <div class="col-lg-12">
-            <br>
-            <br>
-      </div>
-    <!-- /.col-lg-12 -->
-  </div>
-  <div class="row">
-    <div class="col-lg-12">
-    <!--formulario-->
-	{!! Form::open(['url'=> '/admin7alumnoslist/'.$miembro->id, 'method'=>'POST']) !!}
-      <div class="panel panel-default">
-        <div class="panel-heading">
-        </div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-lg-6">
-			    <div class="form-group">
-		        	<div class="form-group{{ $errors->has('U_Admin_Cve') ? ' has-error' : '' }}">
-		        		<label for="U_Admin_Cve">Cve. Plantel</label>
-						{{Form::text('U_Admin_Cve', $miembro->U_Admin_Cve, ['class'=>'form-control', 'placeholder'=>'Ej. 3321370'])}}
-							@if ($errors->has('U_Admin_Cve'))
-			                    <small class="text-danger">
-				                    <strong>{{ $errors->first('U_Admin_Cve') }}</strong>
-			                    </small>
-			                @endif
-			        </div>
-			     </div>
-			     <div class="form-group">
-			        <div class="form-group{{ $errors->has('Porm_Gral') ? ' has-error' : '' }}">
-			        	<label for="Porm_Gral">Promedio General</label>
-						{{Form::text('Porm_Gral', $miembro->Porm_Gral, ['class'=>'form-control', 'placeholder'=>'Ej. 8.9'])}}
-							@if ($errors->has('Porm_Gral'))
-			                    <small class="text-danger">
-				                    <strong>{{ $errors->first('Porm_Gral') }}</strong>
-			                    </small>
-			                @endif
-			        </div>
-				</div>
-				<div class="form-group">
-		        	<div class="form-group{{ $errors->has('Semestre') ? ' has-error' : '' }}">
-		        		<label for="Semestre">Semestre</label>{{Form::select('Semestre', ['' => 'Elije', '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6'], null, ['class'=>'form-control'])}}
-							@if ($errors->has('Semestre'))
-			                    <small class="text-danger">
-				                    <strong>{{ $errors->first('Semestre') }}</strong>
-			                    </small>
-			                @endif
-			        </div>
-			    </div>
-			    <div class="form-group">
-		        	<div class="form-group{{ $errors->has('Email_Institucional') ? ' has-error' : '' }}">
-		        		<label for="Email_Institucional">Email Institucional</label>
-						{{Form::text('Email_Institucional', $miembro->Email_Institucional, ['class'=>'form-control', 'placeholder'=>'Ej. juan27@zac.conalep.edu.mx'])}}
-							@if ($errors->has('Email_Institucional'))
-			                    <small class="text-danger">
-				                    <strong>{{ $errors->first('Email_Institucional') }}</strong>
-			                    </small>
-			                @endif
-			        </div>
-			    </div>
+                <div class="card-body">
+                    <!--formulario-->
+                    {!! Form::open(['url'=> '/admin-userslist/', 'method'=>'POST','enctype'=>'multipart/form-data']) !!}
+						@csrf
 
-			</div>
-<!-- ---------------------/.col-lg-6 (nested) -->
-            <div class="col-lg-6">
-			    <div class="form-group">
-		        	<div class="form-group{{ $errors->has('Colonia') ? ' has-error' : '' }}">
-		        		<label for="Colonia">Colonia</label>
-						{{Form::text('Colonia', $miembro->Colonia, ['class'=>'form-control', 'placeholder'=>'Ej. Fresnillo'])}}
-							@if ($errors->has('Colonia'))
-			                    <small class="text-danger">
-				                    <strong>{{ $errors->first('Colonia') }}</strong>
-			                    </small>
-			                @endif
-			        </div>
-			    </div>
-			    <div class="form-group">
-		        	<div class="form-group{{ $errors->has('Municipio') ? ' has-error' : '' }}">
-		        		<label for="Municipio">Municipio</label>
-						{{Form::text('Municipio', $miembro->Municipio, ['class'=>'form-control', 'placeholder'=>'Ej. Fresnillo'])}}
-							@if ($errors->has('Municipio'))
-			                    <small class="text-danger">
-				                    <strong>{{ $errors->first('Municipio') }}</strong>
-			                    </small>
-			                @endif
-			        </div>
-			    </div>
-			    <!--'Estado','Sit_Academica'-->
-			    <div class="form-group">
-		        	<div class="form-group{{ $errors->has('Estado') ? ' has-error' : '' }}">
-		        		<label for="Estado">Estado</label>
-						{{Form::text('Estado', $miembro->Estado, ['class'=>'form-control', 'placeholder'=>'Ej. Zacatecas'])}}
-							@if ($errors->has('Estado'))
-			                    <small class="text-danger">
-				                    <strong>{{ $errors->first('Estado') }}</strong>
-			                    </small>
-			                @endif
-			        </div>
-			    </div>
-			    <div class="form-group col-lg-4">
-		        	<div class="form-group{{ $errors->has('Sit_Academica') ? ' has-error' : '' }}">
-		        		<label for="Sit_Academica">Situación Académica</label>
-						{{Form::select('Sit_Academica', ['' => 'Elije', 'REGULAR' => 'REGULAR', 'NO REGULAR' => 'NO REGULAR'], null, ['class'=>'form-control'])}}
-							@if ($errors->has('Sit_Academica'))
-			                    <small class="text-danger">
-				                    <strong>{{ $errors->first('Sit_Academica') }}</strong>
-			                    </small>
-			                @endif
-			        </div>
-			     </div>
-			</div>
-            <!-- /.col-lg-6 (nested) -->
-          </div>
-          <!-- /.row (nested) -->
+                        <div class="form-group row">
+                            <label for="Nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="Nombre" type="text" class="form-control{{ $errors->has('Nombre') ? ' is-invalid' : '' }}" name="Nombre" value="{{ old('Nombre') }}" required autofocus>
+
+                                @if ($errors->has('Nombre'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('Nombre') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Apellidos" class="col-md-4 col-form-label text-md-right">{{ __('Apellidos') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="Apellidos" type="text" class="form-control{{ $errors->has('Apellidos') ? ' is-invalid' : '' }}" name="Apellidos" value="{{ old('Apellidos') }}" required autofocus>
+
+                                @if ($errors->has('Apellidos'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('Apellidos') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Rol" class="col-md-4 col-form-label text-md-right">{{ __('Rol') }}</label>
+
+                            <div class="col-md-6">
+                                {{Form::select('Rol', ['' => 'Elije', 'ADMINISTRADOR' => 'ADMINISTRADOR', 'SERVICIOS' => 'SERVICIOS'], null, ['class'=>'form-control', 'required'])}}
+
+                                @if ($errors->has('Rol'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('Rol') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Plantel" class="col-md-4 col-form-label text-md-right">{{ __('Plantel') }}</label>
+
+                            <div class="col-md-6">
+                                {{Form::select('Plantel', ['' => 'Elije', 'Fresnillo' => 'Fresnillo', 'Mazapil' => 'Mazapil','Zacatecas' => 'Zacatecas'], null, ['class'=>'form-control', 'required'])}}
+                                @if ($errors->has('Plantel'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('Plantel') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Guardar') }}
+                                </button>
+                            </div>
+                        </div>
+                    {!! Form::close() !!}
+                </div>
+            </div>
         </div>
-        <!-- /.panel-body -->
-      </div>
-      <!-- /.panel -->
-    <div class="form-group text-right">
-		<a href="{{url('/admin7alumnoslist')}}">Regresar al listado</a>
-		<input type="submit" value="Guardar" class="btn btn-success">
-	</div>
-    {!! Form::close() !!}
     </div>
-    <!-- /.col-lg-12 -->
-  </div>
-  <!-- /.row -->
 </div>
-<!-- /#page-wrapper -->
 @endsection
+ 
+  
+    

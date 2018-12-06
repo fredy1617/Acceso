@@ -14,6 +14,8 @@
                            <div class="alert alert-success">{{ Session::get('success') }}</div>
                         @elseif (Session::has('warnning'))
                             <div class="alert alert-danger">{{ Session::get('warnning') }}</div>
+                        @elseif (Session::has('NoAdmin'))
+                            <div class="alert alert-danger">{{ Session::get('NoAdmin') }}</div>
                         @endif
 
                        	{!! Form::open(['url'=> 'list/registros-alumnos/', 'method'=>'GET','autocomplete'=>'off','role'=>'search']) !!}

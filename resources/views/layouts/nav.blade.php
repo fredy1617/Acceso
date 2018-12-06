@@ -8,9 +8,11 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
     <ul class="navbar-nav mr-auto">
+      @if(Auth::user()->Rol == 'ADMINISTRADOR')
         <li class="nav-item active">
             <a class="nav-link" href="{{ url('/admin7alumnoslist') }}">Alumnos<span class="sr-only">(current)</span></a>
         </li>
+      @endif
         <li class="nav-item active">
             <a class="nav-link" href="{{ url('/list/registros-alumnos/') }}">Registros<span class="sr-only">(current)</span></a>
         </li>

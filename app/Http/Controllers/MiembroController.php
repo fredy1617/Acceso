@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Miembro;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Records;
@@ -13,6 +14,12 @@ use DB;
 
 class MiembroController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin', ['only'=>['index','alumnosImport','create','edit','destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,24 +32,35 @@ class MiembroController extends Controller
         ->where('Matricula','LIKE',$query.'%')
         ->orwhere('Nombre','LIKE','%'.$query.'%')
         ->orwhere('Primer_Apellido','LIKE',$query.'%')
-        ->orwhere('Segundo_Apellido','LIKE',$query.'%')
-        ->paginate(5);
+        ->orwhere('Segundo_Apellido','LIKE',$query.'%')->paginate(5);
         return view('Admin.alumnoslist',["miembro"=>$miembro , 'key'=>$query]);
     }
 
     public function record(Request  $request)
     {   
         $query=trim($request->get('key'));
-        $miembro =DB::table('miembros')
-        ->where('Matricula','LIKE',$query.'%')
-        ->orwhere('Nombre','LIKE','%'.$query.'%')
-        ->orwhere('Primer_Apellido','LIKE',$query.'%')
-        ->orwhere('Segundo_Apellido','LIKE',$query.'%')
-        ->paginate(10);
+        if (Auth::user()->Rol == 'ADMINISTRADOR') {
+            $miembro =DB::table('miembros')
+            ->where('Matricula','LIKE',$query.'%')
+            ->orwhere('Nombre','LIKE','%'.$query.'%')
+            ->orwhere('Primer_Apellido','LIKE',$query.'%')
+            ->orwhere('Segundo_Apellido','LIKE',$query.'%')->paginate(5);
+        }else{
+            $miembro =DB::table('miembros')
+            ->where('U_Admin', Auth::user()->Plantel)
+            ->where(function($todo) use ($query){
+                    $todo->where('Matricula','LIKE',$query.'%')
+                    ->orwhere('Nombre','LIKE','%'.$query.'%')
+                    ->orwhere('Primer_Apellido','LIKE',$query.'%')
+                    ->orwhere('Segundo_Apellido','LIKE',$query.'%');})->paginate(5);
+        }
+        
         return view('Servicios.registros',["miembro"=>$miembro, 'key'=>$query]);
     }
 
-    public function alumnosImport(Request $request){
+    public function alumnosImport(Request $request)
+    
+    {
         if($request->hasFile('alumnos')){
             $path = $request->file('alumnos')->getRealPath();
             $data = \Excel::load($path)->get();
@@ -149,7 +167,7 @@ class MiembroController extends Controller
                     $todo->where('Matricula','LIKE',$query.'%')
                     ->orwhere('Nombre','LIKE','%'.$query.'%')
                     ->orwhere('Primer_Apellido','LIKE',$query.'%')
-                    ->orwhere('Segundo_Apellido','LIKE',$query.'%');})->get();
+                    ->orwhere('Segundo_Apellido','LIKE',$query.'%');})->paginate(5);
             }else{
                 $query=trim($request->get('key'));
                 $miembro =DB::table('miembros')
